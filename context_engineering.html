@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>チャット時代からエージェント時代へ：AIコンテキスト究極図解</title>
+  <title>AIのコンテキストを究極的に図解！</title>
   <style>
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -20,7 +20,7 @@
       padding: 24px 0 8px;
       border-bottom: 2px solid #ddd;
     }
-    h1, h2, h3 {
+    h1, h2, h3, h4 {
       margin-top: 1.6em;
     }
     h1 {
@@ -33,201 +33,143 @@
       background: #fff7e0;
     }
     h3 {
-      font-size: 1.1rem;
-      margin-top: 1.1em;
+      font-size: 1.15rem;
+      margin-top: 1.2em;
     }
     section {
-      margin-top: 1.4em;
+      margin-top: 1.6em;
       background: #fff;
-      padding: 16px 18px;
+      padding: 18px 20px;
       border-radius: 10px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     }
-    .small { font-size: 0.85rem; color: #555; }
+    .small {
+      font-size: 0.85rem;
+      color: #555;
+    }
 
+    /* 図解スタイル */
     .diagram {
       border-radius: 10px;
-      padding: 10px 12px;
-      margin: 14px 0;
+      padding: 14px 14px 10px;
+      margin: 18px 0;
       background: #f8fbff;
       border: 2px solid #4a90e2;
-      font-size: 0.9rem;
     }
     .diagram-title {
       font-weight: bold;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       color: #265d9b;
-      font-size: 0.95rem;
     }
     .flex {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 8px;
+      gap: 12px;
+      margin-top: 10px;
     }
     .box {
-      flex: 1 1 190px;
+      flex: 1 1 180px;
       border-radius: 8px;
-      padding: 8px;
+      padding: 10px;
       background: #ffffff;
       border: 1.5px solid #bbb;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
     }
     .box-strong {
-      border-color: #4a90e2;
+      border: 2px solid #4a90e2;
       background: #f2f7ff;
     }
-    .box-good {
-      border-color: #27ae60;
-      background: #eafff2;
-    }
     .box-warn {
-      border-color: #e74c3c;
+      border: 2px solid #e74c3c;
       background: #ffecec;
+    }
+    .box-good {
+      border: 2px solid #27ae60;
+      background: #eafff2;
     }
     .arrow {
       text-align: center;
       font-size: 1.6rem;
       margin: 2px 0;
-      flex: 0 0 auto;
     }
     .highlight {
       background: #fffbd6;
-      padding: 1px 4px;
+      padding: 2px 4px;
       border-radius: 3px;
     }
-
+    .step-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .step {
+      flex: 1 1 180px;
+      border-radius: 999px;
+      padding: 6px 12px;
+      background: #ffffff;
+      border: 1.5px solid #aaa;
+      font-size: 0.9rem;
+    }
+    .step-num {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      border-radius: 50%;
+      background: #4a90e2;
+      color: #fff;
+      font-size: 0.8rem;
+      margin-right: 6px;
+    }
+    .tag-row {
+      margin-top: 6px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      border: 1px solid #ccc;
+      background: #fafafa;
+    }
+    .tag-good {
+      border-color: #2ecc71;
+      background: #ebffef;
+      color: #168f45;
+    }
+    .tag-bad {
+      border-color: #e74c3c;
+      background: #ffecec;
+      color: #c0392b;
+    }
     .timeline {
-      margin-top: 4px;
+      margin-top: 8px;
       padding-left: 10px;
       border-left: 3px dashed #aaa;
     }
     .timeline-item {
-      margin: 4px 0 8px 6px;
+      margin: 6px 0 10px 6px;
       position: relative;
-      font-size: 0.85rem;
     }
     .timeline-item::before {
       content: "";
       position: absolute;
       left: -11px;
-      top: 4px;
-      width: 8px;
-      height: 8px;
+      top: 6px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: #4a90e2;
     }
     .pill {
       display: inline-block;
-      padding: 1px 6px;
+      padding: 2px 8px;
       border-radius: 999px;
-      font-size: 0.7rem;
-      margin-right: 4px;
-      background: #4a90e2;
-      color: #fff;
-    }
-
-    .step-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 6px;
-    }
-    .step-pill {
-      flex: 1 1 170px;
-      border-radius: 999px;
-      padding: 4px 8px;
-      background: #ffffff;
-      border: 1.5px solid #aaa;
       font-size: 0.8rem;
-    }
-    .step-num {
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      line-height: 18px;
-      text-align: center;
-      border-radius: 50%;
-      background: #4a90e2;
-      color: #fff;
-      font-size: 0.7rem;
-      margin-right: 4px;
-    }
-
-    .qa-wrapper { margin-top: 8px; }
-    .qa-item {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-    .character {
-      width: 64px;
-      text-align: center;
-      font-size: 0.75rem;
-    }
-    .char-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: #ffeaa7;
-      border: 2px solid #fdcb6e;
-      margin: 0 auto 3px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-    .char-icon-teacher {
-      background: #a3d5ff;
-      border-color: #74b9ff;
-    }
-    .speech {
-      flex: 1;
-      background: #f7f7f7;
-      border-radius: 10px;
-      padding: 6px 8px;
-      border: 1px solid #ddd;
-      font-size: 0.85rem;
-      position: relative;
-    }
-    .speech::before {
-      content: "";
-      position: absolute;
-      left: -7px;
-      top: 12px;
-      width: 0;
-      height: 0;
-      border-top: 7px solid transparent;
-      border-bottom: 7px solid transparent;
-      border-right: 7px solid #ddd;
-    }
-
-    .card-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 8px;
-    }
-    .card {
-      flex: 1 1 210px;
-      border-radius: 10px;
-      padding: 8px 10px;
-      background: #ffffff;
-      border: 1.5px solid #ccc;
-      font-size: 0.85rem;
-    }
-    .card-title {
-      font-weight: bold;
-      margin-bottom: 3px;
-      color: #333;
-      font-size: 0.9rem;
-    }
-    .card-badge {
-      display: inline-block;
-      padding: 1px 6px;
-      border-radius: 999px;
-      font-size: 0.7rem;
       margin-right: 4px;
       background: #4a90e2;
       color: #fff;
@@ -236,17 +178,16 @@
     @media (max-width: 600px) {
       body { padding: 0 10px 60px; }
       .box { flex: 1 1 100%; }
-      .card { flex: 1 1 100%; }
-      .qa-item { flex-direction: row; }
+      .step { flex: 1 1 100%; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>チャット時代からエージェント時代へ<br>AIコンテキスト究極図解</h1>
+  <h1>AIのコンテキストを究極図解！<br>（Anthropic記事の超やさしいまとめ）</h1>
   <p class="small">
-    ベース：Anthropic 公式記事「Effective context engineering for AI agents」  
+    元記事：Anthropic「Effective context engineering for AI agents」<br>
     <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank">
       https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
     </a>
@@ -255,396 +196,295 @@
 
 <main>
 
-  <!-- 1. 世界線のシフト（導入） -->
-  <section id="trend-overview">
-    <h2>1. まず「世界線の変化」を1枚で見る</h2>
+  <!-- 究極図解メインセクション -->
+  <section id="super-diagram">
+    <h2>1. AIの「コンテキスト」って何？（1枚絵イメージ）</h2>
 
     <div class="diagram">
-      <div class="diagram-title">図A：チャット × プロンプト → エージェント × コンテキスト</div>
-      <div class="flex">
-        <div class="box">
-          <strong>昔：チャット × プロンプト</strong><br><br>
-          ・人が「うまいプロンプト」を何度も試す<br>
-          ・AIは <span class="highlight">その場の一問一答</span> が中心<br>
-          ・ツール操作や文脈管理は、人間側が担当
-        </div>
-        <div class="arrow">⇒</div>
-        <div class="box box-good">
-          <strong>今：エージェント × コンテキスト</strong><br><br>
-          ・AIがツールを自分で選んで実行（エージェント）<br>
-          ・1回の指示から <span class="highlight">何十ステップも自律行動</span><br>
-          ・人は「どんな情報とルールを渡すか」を設計する役に
-        </div>
-      </div>
-    </div>
-
-    <div class="diagram">
-      <div class="diagram-title">図B：人間の役割イメージ</div>
-      <div class="step-row">
-        <div class="step-pill">
-          <span class="step-num">昔</span>
-          「プロンプト職人」：1メッセージの書き方を工夫
-        </div>
-        <div class="step-pill">
-          <span class="step-num">今</span>
-          「コンテキスト設計者」：<br>
-          ・ルール<br>
-          ・ツールセット<br>
-          ・メモリやログの扱い  
-          をまとめてデザイン
-        </div>
-      </div>
-    </div>
-
-    <p class="small">
-      ※この流れを正面から扱っているのが、Anthropic の  
-      「Effective context engineering for AI agents」です。[https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents]
-    </p>
-  </section>
-
-  <!-- 2. Anthropic記事のエッセンス（図解メイン） -->
-  <section id="anthropic-core">
-    <h2>2. Anthropic記事のポイントを図だけでつかむ</h2>
-
-    <div class="diagram">
-      <div class="diagram-title">図1：コンテキスト = AIの「一時メモ」</div>
+      <div class="diagram-title">図1：AIの頭の中は「小さなホワイトボード」</div>
       <div class="flex">
         <div class="box box-strong">
-          <strong>AIの一時メモ（コンテキスト）</strong><br><br>
-          ・ここにある情報だけを見て考える<br>
-          ・入りきる量は有限<br>
-          ・多すぎると <span class="highlight">だいじな所を探しにくくなる</span>
+          <strong>AIのホワイトボード</strong><br><br>
+          ・ここに書けること = <span class="highlight">コンテキスト</span><br>
+          ・入りきる量は決まっている<br>
+          ・書きすぎると、何がどこにあるかゴチャゴチャ…
         </div>
+        <div class="arrow">⇐ 何を書くか えらぶ</div>
         <div class="box">
-          <strong>中身の例</strong><br><br>
-          ・ルール（システムプロンプト）<br>
-          ・会話の最近のログ<br>
-          ・ツールの説明と結果<br>
-          ・外部メモから取り込んだ要約 など
+          <strong>書くものの例</strong><br><br>
+          ・やるべきこと（ルール）<br>
+          ・これまでの会話のだいじな所<br>
+          ・道具の使い方（ツール説明）<br>
+          ・メモ・ノート など
         </div>
       </div>
     </div>
 
+    <h3>1-1. 情報を「のせすぎる」とどうなる？</h3>
     <div class="diagram">
-      <div class="diagram-title">図2：コンテキスト・エンジニアリング = メモの中身をデザインする人</div>
-      <div class="step-row">
-        <div class="step-pill">
+      <div class="diagram-title">図2：ノートの量と覚えやすさ</div>
+      <div class="flex">
+        <div class="box">
+          <strong>少ないノート</strong><br><br>
+          ・1〜2枚だけ<br>
+          ・どこに何が書いてあるか<br>
+          → すぐわかる！
+        </div>
+        <div class="box">
+          <strong>ノート山もり</strong><br><br>
+          ・何十枚・何百枚<br>
+          ・「あれ？どこに書いてたっけ？」<br>
+          → 探すのに時間がかかる…
+        </div>
+        <div class="box box-warn">
+          <strong>コンテキスト・ロット</strong><br><br>
+          ・AIの場合も同じで、<br>
+          ・<span class="highlight">入れすぎると だんだん思い出す力↓</span><br>
+          ・これが記事でいう「context rot」
+        </div>
+      </div>
+    </div>
+
+    <h3>1-2. コンテキスト・エンジニアリング = ホワイトボード管理のプロ</h3>
+    <div class="diagram">
+      <div class="diagram-title">図3：コンテキスト・エンジニアのしごと</div>
+      <div class="step-list">
+        <div class="step">
           <span class="step-num">1</span>
-          ゴールを決める（AIに何をさせたい？）
+          <strong>ゴールを決める</strong><br>
+          「AIに何をしてほしいか？」をはっきりさせる
         </div>
-        <div class="step-pill">
+        <div class="step">
           <span class="step-num">2</span>
-          本当に必要な情報だけ選ぶ
+          <strong>本当に大事な情報だけえらぶ</strong><br>
+          「これを読めばだいたいOK」という最小セットをつくる
         </div>
-        <div class="step-pill">
+        <div class="step">
           <span class="step-num">3</span>
-          「ルール → 道具 → 今の状況」の順で並べる
+          <strong>見せる順番を考える</strong><br>
+          「ルール → 道具 → 今の状態」のように、わかりやすく並べる
         </div>
-        <div class="step-pill">
+        <div class="step">
           <span class="step-num">4</span>
-          長くなったら要約して軽くする
-        </div>
-      </div>
-    </div>
-
-    <div class="diagram">
-      <div class="diagram-title">図3：コンテキストを作る4パーツ（超ざっくり）</div>
-      <div class="flex">
-        <div class="box">
-          <strong>① ルール</strong><br>
-          ・AIの役割・口調・NG行動<br>
-          ・シンプル＆具体的が正解
-        </div>
-        <div class="box">
-          <strong>② ツール</strong><br>
-          ・検索・DB・コード実行など<br>
-          ・1ツール1役割で分かりやすく
-        </div>
-        <div class="box">
-          <strong>③ お手本</strong><br>
-          ・「こういう回答をしてほしい」の例<br>
-          ・典型例を少数だけ
-        </div>
-        <div class="box">
-          <strong>④ 会話ログ</strong><br>
-          ・直近のやりとりの重要部分だけ<br>
-          ・古い細かいログは要約 or 外だし
+          <strong>長くなってきたら まとめ直す</strong><br>
+          いらない部分をけずり、だいじなところだけ残す
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 3. 長いタスク用テクニック（圧縮版） -->
-  <section id="long-tasks">
-    <h2>3. 長いタスクを回すための「3つの技」</h2>
+  <!-- 要素ごとの究極図解 -->
+  <section id="parts-diagram">
+    <h2>2. コンテキストを作る4つのパーツ（全部 図で見る）</h2>
 
+    <h3>2-1. パーツ①：ルール（システムプロンプト）</h3>
     <div class="diagram">
-      <div class="diagram-title">図4：3つまとめて図解</div>
+      <div class="diagram-title">図4：AIへのルールの書き方</div>
       <div class="flex">
-        <div class="box box-strong">
-          <strong>技① コンパクション</strong><br><br>
-          ・会話が長くなったら<br>
-          → AIに「ここまでの要点メモ」を書かせる<br>
-          → そのメモだけコンテキストに残す
-        </div>
         <div class="box box-good">
-          <strong>技② ノート（外部メモ）</strong><br><br>
-          ・長期の目標・TODO・決定事項は<br>
-          → コンテキストの外のファイルに保存<br>
-          → 必要なときだけ読み込む
+          <strong>よい書き方</strong>
+          <div class="tag-row">
+            <span class="tag tag-good">はっきり</span>
+            <span class="tag tag-good">シンプル</span>
+            <span class="tag tag-good">やることが具体的</span>
+          </div>
+          <br>
+          例：<br>
+          「あなたは小学生に説明する先生です。<br>
+          ・むずかしい言葉は使わない<br>
+          ・図やたとえ話を入れる<br>
+          ・1つの文は短くする」
         </div>
-        <div class="box">
-          <strong>技③ サブエージェント</strong><br><br>
-          ・1つの大きな仕事を<br>
-          → 小さな専門エージェントに分担させる<br>
-          → 各エージェントは自分のコンテキストだけ持つ
+        <div class="box box-warn">
+          <strong>よくない書き方</strong>
+          <div class="tag-row">
+            <span class="tag tag-bad">あいまい</span>
+            <span class="tag tag-bad">長すぎ</span>
+            <span class="tag tag-bad">ルールが多すぎ</span>
+          </div>
+          <br>
+          ・お願いごとを全部つめこむ<br>
+          ・むずかしい言葉だらけ<br>
+          ・読むだけで大変…
         </div>
       </div>
     </div>
 
+    <h3>2-2. パーツ②：道具（ツール）</h3>
     <div class="diagram">
-      <div class="diagram-title">図5：時間の流れで見ると</div>
+      <div class="diagram-title">図5：AIの道具箱イメージ</div>
+      <div class="flex">
+        <div class="box box-strong">
+          <strong>道具箱の中身</strong><br><br>
+          ・本を探す道具（検索）<br>
+          ・ファイルを読む道具<br>
+          ・メモを書く道具<br>
+          ・データを計算する道具 など
+        </div>
+        <div class="box">
+          <strong>道具のルール</strong><br><br>
+          ・1つの道具に 1つのはたらき<br>
+          ・名前と説明は わかりやすく<br>
+          ・似たような道具を たくさん作らない
+        </div>
+        <div class="box box-warn">
+          <strong>ダメな例</strong><br><br>
+          ・何でもできるスーパーツール1個だけ<br>
+          ・人間でも「いつ使う？」と迷うようなもの<br>
+          → AIも もちろん迷う
+        </div>
+      </div>
+    </div>
+
+    <h3>2-3. パーツ③：お手本（例）</h3>
+    <div class="diagram">
+      <div class="diagram-title">図6：AIに見せる「お手本」の考え方</div>
+      <div class="flex">
+        <div class="box box-good">
+          <strong>よいお手本</strong><br><br>
+          ・よくあるパターンを いくつか<br>
+          ・「こうしてほしい」がハッキリわかる<br>
+          ・AIにとっては「絵」みたいな存在
+        </div>
+        <div class="box box-warn">
+          <strong>よくないお手本</strong><br><br>
+          ・レアケースばかり山ほど並べる<br>
+          ・「とにかく全部読んで！」状態<br>
+          → コンテキストがすぐいっぱいになる
+        </div>
+      </div>
+    </div>
+
+    <h3>2-4. パーツ④：会話のながれ（メッセージ履歴）</h3>
+    <div class="diagram">
+      <div class="diagram-title">図7：長い会話は「まとめて軽く」する</div>
       <div class="timeline">
         <div class="timeline-item">
           <span class="pill">Step 1</span>
-          ゴールとルールを決める（システムプロンプト＋ツールセット）
+          会話が短いうちは、そのままホワイトボードに書く
         </div>
         <div class="timeline-item">
           <span class="pill">Step 2</span>
-          エージェントがツールを使いながら作業を進める
+          長くなってきたら、「だいじな部分だけ」まとめる（要約）
         </div>
         <div class="timeline-item">
           <span class="pill">Step 3</span>
-          会話が長くなったらコンパクション＆ノートへ退避
+          まとめたメモだけ残し、古い細かいログは消す or 外部に保存
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 長期タスクの究極図解 -->
+  <section id="long-tasks">
+    <h2>3. 長い作業をするときの3つの技（究極図まとめ）</h2>
+
+    <h3>3-1. 技①：コンパクション = 「会話ぜんぶを じょうずに要約」</h3>
+    <div class="diagram">
+      <div class="diagram-title">図8：コンパクションの流れ</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <strong>1. 会話が増える</strong><br>
+          ユーザーとAIが たくさん話す → ホワイトボードがギッシリ
         </div>
         <div class="timeline-item">
-          <span class="pill">Step 4</span>
-          必要に応じてサブエージェントを起こして深掘り
+          <strong>2. AIが自分でまとめる</strong><br>
+          「今後も大事になるポイント」だけをピックアップして短くする
+        </div>
+        <div class="timeline-item">
+          <strong>3. 新しいホワイトボード開始</strong><br>
+          まとめた内容 + 最近の情報 だけを新しいボードに書き直す
+        </div>
+      </div>
+    </div>
+
+    <h3>3-2. 技②：ノート取り = 「ホワイトボードの外にメモ帳」</h3>
+    <div class="diagram">
+      <div class="diagram-title">図9：ホワイトボード ＋ ノート の組み合わせ</div>
+      <div class="flex">
+        <div class="box box-strong">
+          <strong>ホワイトボード（コンテキスト）</strong><br><br>
+          ・今この瞬間の作業に必要な情報<br>
+          ・すぐに見たいものだけ<br>
+          ・よく入れ替わる
+        </div>
+        <div class="arrow">＋</div>
+        <div class="box box-good">
+          <strong>ノート（外部メモ）</strong><br><br>
+          ・長く続く目標<br>
+          ・進捗のチェックリスト<br>
+          ・「次にやること」のリスト<br>
+          → ファイルやメモツールに保存
+        </div>
+      </div>
+    </div>
+
+    <h3>3-3. 技③：サブエージェント = 「小さなAIチームを作る」</h3>
+    <div class="diagram">
+      <div class="diagram-title">図10：AIチームのイメージ</div>
+      <div class="flex">
+        <div class="box box-strong">
+          <strong>リーダーAI</strong><br><br>
+          ・全体の計画を立てる<br>
+          ・どの仕事を だれにふるか決める<br>
+          ・サブAIから結果を集めてまとめる
+        </div>
+        <div class="box">
+          <strong>サブAIたち</strong><br><br>
+          ・コード専門AI<br>
+          ・リサーチ専門AI<br>
+          ・文章チェック専門AI など<br><br>
+          それぞれが「自分のホワイトボード」を持って、くわしく調べる
+        </div>
+        <div class="box box-good">
+          <strong>ポイント</strong><br><br>
+          ・1人のAIに全部つめこまない<br>
+          ・それぞれが少ないコンテキストでキレよく動く<br>
+          ・最後だけ ぎゅっと結果をまとめてリーダーへ
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. Q&Aキャラコーナー（少し短く） -->
-  <section id="qa-characters">
-    <h2>4. キャラでざっくりQ＆A</h2>
-    <p class="small">登場人物：<strong>コンちゃん</strong>（小学生）と <strong>AI先生</strong>（コンテキスト博士）</p>
-
-    <div class="qa-wrapper">
-      <div class="qa-item">
-        <div class="character">
-          <div class="char-icon">コ</div>
-          コンちゃん
-        </div>
-        <div class="speech">
-          Q. コンテキストって、一言でいうと？
-        </div>
-      </div>
-      <div class="qa-item">
-        <div class="character">
-          <div class="char-icon char-icon-teacher">先</div>
-          AI先生
-        </div>
-        <div class="speech">
-          A. AIが「今まとめて読めるメモ」のことだよ。<br>
-          ここに <span class="highlight">何を・どれだけ・どんな順番で</span> 書くかを工夫するのがコンテキスト・エンジニアリングなんだ。
-        </div>
-      </div>
-
-      <div class="qa-item">
-        <div class="character">
-          <div class="char-icon">コ</div>
-          コンちゃん
-        </div>
-        <div class="speech">
-          Q. じゃあ、できるだけたくさん情報を入れたほうがいい？
-        </div>
-      </div>
-      <div class="qa-item">
-        <div class="character">
-          <div class="char-icon char-icon-teacher">先</div>
-          AI先生
-        </div>
-        <div class="speech">
-          A. 実は逆なんだ。<br>
-          入れすぎると、AIの注意力がバラけて「大事な情報」が埋もれちゃう。<br>
-          <span class="highlight">少なくて、でもすごく役に立つ情報だけ</span> を選ぶのがコツだよ。
-        </div>
-      </div>
-
-      <div class="qa-item">
-        <div class="character">
-          <div class="char-icon">コ</div>
-          コンちゃん
-        </div>
-        <div class="speech">
-          Q. 今日からできる「コンテキスト上手な質問のしかた」は？
-        </div>
-      </div>
-      <div class="qa-item">
-        <div class="character">
-          <div class="char-icon char-icon-teacher">先</div>
-          AI先生
-        </div>
-        <div class="speech">
-          A. 例えばこの3つだけ意識しよう。<br>
-          ① 最初に「ゴール」を1行で書く<br>
-          ② 条件は「本当に必要なもの」だけにしぼる<br>
-          ③ 長くなったら「ここまでを要約して」と頼む  
-          これだけでも、かなり「コンテキストうまい人」だよ。
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. 要約カード（さらに圧縮） -->
-  <section id="summary-cards">
-    <h2>5. 3分で流れをつかむ要約カード</h2>
-
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-title"><span class="card-badge">CARD 1</span> 世界線の変化</div>
-        <ul>
-          <li>チャット × プロンプト → エージェント × コンテキスト へ</li>
-          <li>人の仕事：プロンプト職人 → コンテキスト設計者</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><span class="card-badge">CARD 2</span> コンテキスト・エンジニアリング</div>
-        <ul>
-          <li>AIの一時メモに入れる情報をデザインすること</li>
-          <li>少なくて役立つ情報だけを、良い順番で</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><span class="card-badge">CARD 3</span> 4つのパーツ</div>
-        <ul>
-          <li>① ルール ② ツール ③ お手本 ④ 会話ログ</li>
-          <li>どれも「足しすぎない・分かりやすく」が基本</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><span class="card-badge">CARD 4</span> 長いタスクの3技</div>
-        <ul>
-          <li>コンパクション（要約）</li>
-          <li>外部ノート（メモ）</li>
-          <li>サブエージェント（役割分担）</li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <div class="card-title"><span class="card-badge">CARD 5</span> 実務でのチェックリスト</div>
-        <ul>
-          <li>情報：多さより「厳選」と「構造」</li>
-          <li>ツール：少数精鋭で役割がはっきり</li>
-          <li>困ったら：シンプルに作り → 失敗を見て少しずつ足す</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. 最近のAIエージェントの参考情報（簡潔版） -->
-  <section id="recent-agents">
-    <h2>6. 最近のAIエージェントの参考情報（ざっくり地図）</h2>
+  <!-- まとめの1枚絵 -->
+  <section id="summary">
+    <h2>4. ぜんぶまとめた「究極1ページ」イメージ</h2>
 
     <div class="diagram">
-      <div class="diagram-title">図6：代表的なエージェントと役割イメージ</div>
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-title"><span class="card-badge">1</span> Claude Code / Cowork（Anthropic）</div>
-          <ul>
-            <li>得意：コード・データ分析を長時間サポート</li>
-            <li>ポイント：
-              <ul>
-                <li>リポジトリ探索＋必要ファイルだけ読み込み</li>
-                <li>コンパクション＆メモリで長いタスクを継続</li>
-              </ul>
-            </li>
-            <li class="small">
-              技術背景：[Anthropic公式のコンテキスト解説][https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents]  
-              自律性評価：[https://www.anthropic.com/news/measuring-agent-autonomy]
-            </li>
-          </ul>
+      <div class="diagram-title">図11：コンテキスト・エンジニアリング 完全地図</div>
+      <div class="flex">
+        <div class="box box-strong">
+          <strong>A. まず決めること</strong><br><br>
+          1. 何をしてほしいAIか？（ゴール）<br>
+          2. どんなルールで動いてほしいか？<br>
+          3. どんな道具が必要か？
         </div>
-
-        <div class="card">
-          <div class="card-title"><span class="card-badge">2</span> OpenAI系エージェント</div>
-          <ul>
-            <li>得意：コード修正・ブラウジング・タスク自動化</li>
-            <li>ポイント：
-              <ul>
-                <li>ツール呼び出し＋コード実行＋検索を組み合わせ</li>
-                <li>IDEやアプリに組み込んで「開発補助エージェント」として利用</li>
-              </ul>
-            </li>
-            <li class="small">
-              比較 overview：[https://bosio.digital/articles/agent-arms-race-openai-anthropic-google]
-            </li>
-          </ul>
+        <div class="box box-good">
+          <strong>B. コンテキストに入れるもの</strong><br><br>
+          ・ルール（システムプロンプト）<br>
+          ・必要十分なお手本（例）<br>
+          ・今の会話のだいじな部分<br>
+          ・ジャストインタイムでとってきた情報
         </div>
-
-        <div class="card">
-          <div class="card-title"><span class="card-badge">3</span> Google 系エージェント</div>
-          <ul>
-            <li>得意：検索＋Workspace（Gmail / Docs / Sheets）連携</li>
-            <li>ポイント：
-              <ul>
-                <li>社内ドキュメントを横断して回答・要約</li>
-                <li>クラウド上のデータ分析を半自動で回す</li>
-              </ul>
-            </li>
-            <li class="small">
-              トレンド解説：[https://actgsys.com/en/blog/google-ai-agent-trends-2026]
-            </li>
-          </ul>
+        <div class="box">
+          <strong>C. 長くなってきたら</strong><br><br>
+          ・コンパクションで会話をまとめる<br>
+          ・ノートに長期情報を退避する<br>
+          ・必要ならサブAIに仕事をわける
         </div>
-
-        <div class="card">
-          <div class="card-title"><span class="card-badge">4</span> NVIDIA Agent Toolkit 系</div>
-          <ul>
-            <li>得意：産業・エンタープライズ向けワークフロー自動化</li>
-            <li>ポイント：
-              <ul>
-                <li>GPU＋企業データ＋外部ツールをつなぐ土台</li>
-                <li>複数エージェントを協調させる設計がしやすい</li>
-              </ul>
-            </li>
-            <li class="small">
-              概要：[http://nvidianews.nvidia.com/news/ai-agents]
-            </li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <div class="card-title"><span class="card-badge">5</span> 企業内カスタムエージェント</div>
-          <ul>
-            <li>得意：自社用カスタマーサポート・資料作成・運用自動化</li>
-            <li>ポイント：
-              <ul>
-                <li>社内ナレッジ＋RAG＋ツールを組み合わせた「社内専用AI」</li>
-                <li>エージェントごとにコンテキスト設計がカギ</li>
-              </ul>
-            </li>
-            <li class="small">
-              事例・動向：[https://www.prosus.com/news-insights/2026/state-of-ai-agents-2026-autonomy-is-here]  
-              セキュリティ分野の予測：[https://www.paloaltonetworks.com/blog/2025/11/2026-predictions-for-autonomous-ai/]
-            </li>
-          </ul>
+        <div class="box box-warn">
+          <strong>D. やってはいけないこと</strong><br><br>
+          ・「とりあえず全部つっこむ」<br>
+          ・ルール・道具・例を増やしすぎる<br>
+          ・古いログをいつまでも残しっぱなし
         </div>
       </div>
     </div>
 
-    <div class="diagram">
-      <div class="diagram-title">図7：あなたが意識すべき「共通ポイント」</div>
-      <ul style="font-size:0.9rem; padding-left:1.1em;">
-        <li>どのエージェントも「コンテキスト設計」が性能のボトルネックになりやすい</li>
-        <li>プロンプト1本勝負より、<span class="highlight">ルール・ツール・ノート・要約</span>の設計が重要</li>
-        <li>小さく作って、ログを見ながら「何をコンテキストに残すか」をチューニングしていくのが現実的な進め方</li>
-      </ul>
-    </div>
+    <p><strong>いちばん大事な一文：</strong><br>
+      <span class="highlight">「AIには、できるだけすくなくて、でもとても役に立つ情報だけを、いい順番で見せる」</span>  
+      これが、記事が言っているコンテキスト・エンジニアリングの本質です。
+    </p>
   </section>
 
 </main>
