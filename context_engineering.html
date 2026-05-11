@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>AIのコンテキストを究極的に図解！</title>
+  <title>AIのコンテキストを究極図解！</title>
   <style>
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -175,10 +175,94 @@
       color: #fff;
     }
 
+    /* Q&Aキャラ用 */
+    .qa-wrapper {
+      margin-top: 12px;
+    }
+    .qa-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .character {
+      width: 70px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+    .char-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #ffeaa7;
+      border: 2px solid #fdcb6e;
+      margin: 0 auto 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .char-icon-teacher {
+      background: #a3d5ff;
+      border-color: #74b9ff;
+    }
+    .speech {
+      flex: 1;
+      background: #f7f7f7;
+      border-radius: 10px;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      font-size: 0.9rem;
+      position: relative;
+    }
+    .speech::before {
+      content: "";
+      position: absolute;
+      left: -7px;
+      top: 14px;
+      width: 0;
+      height: 0;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-right: 7px solid #ddd;
+    }
+
+    /* 要約カード */
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .card {
+      flex: 1 1 200px;
+      border-radius: 10px;
+      padding: 10px 12px;
+      background: #ffffff;
+      border: 1.5px solid #ccc;
+      font-size: 0.9rem;
+    }
+    .card-title {
+      font-weight: bold;
+      margin-bottom: 4px;
+      color: #333;
+    }
+    .card-badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      margin-right: 4px;
+      background: #4a90e2;
+      color: #fff;
+    }
+
     @media (max-width: 600px) {
       body { padding: 0 10px 60px; }
       .box { flex: 1 1 100%; }
       .step { flex: 1 1 100%; }
+      .qa-item { flex-direction: row; }
+      .card { flex: 1 1 100%; }
     }
   </style>
 </head>
@@ -482,9 +566,160 @@
     </div>
 
     <p><strong>いちばん大事な一文：</strong><br>
-      <span class="highlight">「AIには、できるだけすくなくて、でもとても役に立つ情報だけを、いい順番で見せる」</span>  
+      <span class="highlight">「AIには、できるだけすくなくて、でもとても役に立つ情報だけを、いい順番で見せる」</span><br>
       これが、記事が言っているコンテキスト・エンジニアリングの本質です。
     </p>
+  </section>
+
+  <!-- Q&Aキャラコーナー -->
+  <section id="qa-characters">
+    <h2>5. キャラでわかるQ＆Aコーナー</h2>
+    <p class="small">登場人物：<strong>コンちゃん</strong>（小学生）と <strong>AI先生</strong>（コンテキスト博士）</p>
+
+    <div class="qa-wrapper">
+      <!-- Q1 -->
+      <div class="qa-item">
+        <div class="character">
+          <div class="char-icon">コ</div>
+          コンちゃん
+        </div>
+        <div class="speech">
+          Q1. 「コンテキスト」って、むずかしそう… 一言でいうと何？
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="character">
+          <div class="char-icon char-icon-teacher">先</div>
+          AI先生
+        </div>
+        <div class="speech">
+          A. AIが今まとめて読める「メモスペース」だよ。<br>
+          このメモに、ルール・会話・道具の説明を <span class="highlight">ちょうどいい量</span> だけ書いてあげるのが大事なんだ。
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="qa-item">
+        <div class="character">
+          <div class="char-icon">コ</div>
+          コンちゃん
+        </div>
+        <div class="speech">
+          Q2. だったら、たくさんメモを入れたほうが、もっと頭よくなるんじゃないの？
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="character">
+          <div class="char-icon char-icon-teacher">先</div>
+          AI先生
+        </div>
+        <div class="speech">
+          A. 実は逆なんだ。<br>
+          メモが多すぎると、AIの「注意力」がバラけてしまって、だいじな情報を見つけにくくなる。<br>
+          だから、<span class="highlight">少ないけど役立つ情報だけ</span>を選ぶのがプロの仕事なんだよ。
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="qa-item">
+        <div class="character">
+          <div class="char-icon">コ</div>
+          コンちゃん
+        </div>
+        <div class="speech">
+          Q3. 長いおしゃべりをするとき、AIはどうやって話の流れを忘れないの？
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="character">
+          <div class="char-icon char-icon-teacher">先</div>
+          AI先生
+        </div>
+        <div class="speech">
+          A. 3つの技を使うよ。<br>
+          ① <strong>コンパクション</strong>：会話をうまく要約してホワイトボードを軽くする。<br>
+          ② <strong>ノート取り</strong>：外のメモに長期のことを書き残す。<br>
+          ③ <strong>サブAIチーム</strong>：細かい仕事は専門のAIにまかせるんだ。
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="qa-item">
+        <div class="character">
+          <div class="char-icon">コ</div>
+          コンちゃん
+        </div>
+        <div class="speech">
+          Q4. ぼくがAIを使うときに、今日からできる「コンテキスト上手」な使い方ってある？
+        </div>
+      </div>
+      <div class="qa-item">
+        <div class="character">
+          <div class="char-icon char-icon-teacher">先</div>
+          AI先生
+        </div>
+        <div class="speech">
+          A. あるよ！ たとえば…<br>
+          ・最初に「ゴール」をはっきり書く（何をしてほしいか）<br>
+          ・むずかしい条件を全部一気に書かないで、だいじな条件だけにしぼる<br>
+          ・長く続いたら、「ここまでのまとめを書いて」とAIにお願いする<br>
+          これだけで、かなり「コンテキスト上手」になれるよ。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 要約カード -->
+  <section id="summary-cards">
+    <h2>6. ぱっと見でわかる要約カード</h2>
+    <p class="small">読む時間がない人向けの「カード版まとめ」です。</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title"><span class="card-badge">CARD 1</span> コンテキストとは？</div>
+        <ul>
+          <li>AIが一度に読める「メモスペース」</li>
+          <li>入れられる量には限りがある</li>
+          <li>入れすぎると、だいじな情報が探しにくくなる</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-badge">CARD 2</span> コンテキスト・エンジニアリング</div>
+        <ul>
+          <li>そのメモスペースに「何を」「どれだけ」「どんな順番で」入れるかを設計すること</li>
+          <li>ねらい：<span class="highlight">少ない情報で、AIから良い結果を引き出す</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-badge">CARD 3</span> 主な4つのパーツ</div>
+        <ul>
+          <li>① ルール（システムプロンプト）</li>
+          <li>② 道具（ツール）</li>
+          <li>③ お手本（例）</li>
+          <li>④ 会話の流れ（メッセージ履歴）</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-badge">CARD 4</span> 長いタスク用の3つの技</div>
+        <ul>
+          <li>コンパクション：会話を要約して軽くする</li>
+          <li>ノート取り：長期情報は外部メモに逃がす</li>
+          <li>サブエージェント：役割分担でチーム化</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-badge">CARD 5</span> 実務でのポイント</div>
+        <ul>
+          <li>情報は「多いほどよい」ではなく「必要十分で締まっている」が正解</li>
+          <li>ツールと例は厳選して、迷わない設計にする</li>
+          <li>困ったら「まずシンプルに作り、失敗を見ながら少しずつ足す」</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
 </main>
