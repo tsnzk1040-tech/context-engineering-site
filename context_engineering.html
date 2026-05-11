@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>チャット時代からエージェント時代へ：AIコンテキスト究極図解</title>
+  <title>生成AI活用を一歩進める：コンテキスト設計とエージェント活用の基本</title>
   <style>
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -162,6 +162,15 @@
       font-size: 0.7rem;
       margin-right: 4px;
     }
+    .step-label {
+      display: inline-block;
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: #4a90e2;
+      color: #fff;
+      font-size: 0.7rem;
+      margin-right: 4px;
+    }
 
     .qa-wrapper { margin-top: 8px; }
     .qa-item {
@@ -171,7 +180,7 @@
     }
     .character {
       width: 64px;
-      text覧:center;
+      text-align: center;
       font-size: 0.75rem;
     }
     .char-icon {
@@ -248,6 +257,10 @@
       color: #fff;
     }
 
+    a {
+      color: #1f6fb2;
+    }
+
     @media (max-width: 600px) {
       body { padding: 0 10px 60px; }
       .box { flex: 1 1 100%; }
@@ -261,13 +274,13 @@
 
 <header>
   <div class="meta-info">
-    作成日: 20260511<br>
+    作成日: 2026/05/11<br>
     作成者: T_Tsunezuka
   </div>
-  <h1>チャット時代からエージェント時代へ<br>AIコンテキスト究極図解</h1>
+  <h1>生成AI活用を一歩進める<br>コンテキスト設計とエージェント活用の基本</h1>
   <p class="small">
-    ベース：Anthropic 公式記事「Effective context engineering for AI agents」  
-    <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank">
+    参考：Anthropic 公式記事「Effective context engineering for AI agents」  
+    <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">
       https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
     </a>
   </p>
@@ -275,25 +288,36 @@
 
 <main>
 
-  <!-- 1. 世界線のシフト（導入＋MCP） -->
+  <section id="message">
+    <h2>0. この資料で伝えたいこと</h2>
+    <div class="diagram">
+      <div class="diagram-title">本資料の要点</div>
+      <ul style="font-size:0.9rem; padding-left:1.1em;">
+        <li>生成AI活用は、単発のチャット利用から、業務プロセスに組み込む段階へ進んでいる</li>
+        <li>エージェント活用では、プロンプトだけでなく、<span class="highlight">コンテキスト・ツール・スキル・権限設計</span>が重要になる</li>
+        <li>導入時は、まず小さく試し、ログを見ながら改善し、人の確認ポイントを明確にする</li>
+      </ul>
+    </div>
+  </section>
+
   <section id="trend-overview">
-    <h2>1. まず「世界線の変化」を1枚で見る</h2>
+    <h2>1. まず「活用スタイルの変化」を1枚で見る</h2>
 
     <div class="diagram">
-      <div class="diagram-title">図A：チャット × プロンプト → エージェント × コンテキスト</div>
+      <div class="diagram-title">図A：チャット活用からエージェント活用へ</div>
       <div class="flex">
         <div class="box">
-          <strong>昔：チャット × プロンプト</strong><br><br>
-          ・人が「うまいプロンプト」を何度も試す<br>
+          <strong>従来：チャット × プロンプト</strong><br><br>
+          ・人が依頼文を工夫しながらAIに相談する<br>
           ・AIは <span class="highlight">その場の一問一答</span> が中心<br>
           ・ツール操作や文脈管理は、人間側が担当
         </div>
         <div class="arrow">⇒</div>
         <div class="box box-good">
-          <strong>今：エージェント × コンテキスト</strong><br><br>
-          ・AIがツールを自分で選んで実行（エージェント）<br>
-          ・1回の指示から <span class="highlight">何十ステップも自律行動</span><br>
-          ・人は「どんな情報とルールを渡すか」を設計する役に
+          <strong>これから：エージェント × コンテキスト</strong><br><br>
+          ・AIが、許可された範囲内でツールを選択・実行する<br>
+          ・1回の依頼から、複数ステップの作業を支援する<br>
+          ・人は「渡す情報・ルール・権限・確認ポイント」を設計する
         </div>
       </div>
     </div>
@@ -302,178 +326,148 @@
       <div class="diagram-title">図B：人間の役割イメージ</div>
       <div class="step-row">
         <div class="step-pill">
-          <span class="step-num">昔</span>
-          「プロンプト職人」：1メッセージの書き方を工夫
+          <span class="step-label">従来</span>
+          個人の工夫に依存したプロンプト活用
         </div>
         <div class="step-pill">
-          <span class="step-num">今</span>
-          「コンテキスト設計者」：<br>
+          <span class="step-label">これから</span>
+          コンテキスト設計：<br>
           ・ルール<br>
-          ・ツールセット<br>
-          ・メモリやログの扱い  
-          をまとめてデザイン
+          ・ツール<br>
+          ・業務スキル<br>
+          ・ログ／メモリの扱い<br>
+          ・人の確認ポイント  
+          をまとめて設計
         </div>
       </div>
     </div>
 
     <div class="diagram">
-      <div class="diagram-title">図C：MCPで「ツールつなぎ」も世界線が変わった</div>
+      <div class="diagram-title">図C：MCPとスキルの役割を分けて理解する</div>
       <div class="flex">
-        <div class="box">
-          <strong>昔のツール接続</strong><br><br>
-          ・サービスごとにバラバラなAPI<br>
-          ・エージェントごとに個別実装<br>
-          → ツールを1個足すのも大仕事
-        </div>
         <div class="box box-strong">
-          <strong>今：MCP（Model Context Protocol）</strong><br><br>
-          ・AIと外部ツール／データをつなぐ共通の「差し込み口」<br>
-          ・MCPサーバーを1つ用意すれば、対応クライアント（Claude など）から同じ形で利用できる  
+          <strong>MCP（Model Context Protocol）</strong><br><br>
+          ・AIと外部ツール／データをつなぐための共通プロトコル<br>
+          ・SaaS、DB、ファイル、社内システムなどをAIから扱いやすくする<br>
+          ・MCP自体は「業務手順」を管理する仕組みではなく、主に接続の標準化を担う<br><br>
           <span class="small">
-            参考：[公式ドキュメント][https://modelcontextprotocol.io/docs/getting-started/intro]  
-            MCPは Anthropic 記事でもツール連携の前提として触れられています。[https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents]
+            公式：<a href="https://modelcontextprotocol.io/docs/getting-started/intro" target="_blank" rel="noopener noreferrer">MCP Documentation</a>
           </span>
+        </div>
+        <div class="box box-good">
+          <strong>スキル</strong><br><br>
+          ・特定業務を進めるための再利用可能な型<br>
+          ・例：手順、判断基準、プロンプト、参照資料、利用ツールの組み合わせ<br>
+          ・MCPツールを使う場合もあるが、スキルそのものは社内の業務ノウハウとして管理する
         </div>
       </div>
       <p class="small">
-        ⇒ エージェントに新しい外部ツールを「足す」「組み替える」が現実的になり、  
-        コンテキスト設計とツール設計をセットで回す時代になりました。
+        ⇒ MCPは「外部システムへの接続口」、スキルは「業務を進めるための手順・型」と分けて考えると整理しやすくなります。
       </p>
     </div>
-
-    <p class="small">
-      ※こうした流れ（長期タスク・ツール・メモリ・MCPを含むコンテキスト設計）を正面から扱っているのが、  
-      Anthropic の「Effective context engineering for AI agents」です。[https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents]
-    </p>
   </section>
 
-  <!-- 2. Anthropic記事のエッセンス -->
   <section id="anthropic-core">
-    <h2>2. Anthropic記事のポイントを図だけでつかむ</h2>
+    <h2>2. コンテキスト設計のポイントを図でつかむ</h2>
 
     <div class="diagram">
-      <div class="diagram-title">図1：コンテキスト = AIの「一時メモ」</div>
+      <div class="diagram-title">図1：コンテキスト = AIがその時点で参照できる情報</div>
       <div class="flex">
         <div class="box box-strong">
-          <strong>AIの一時メモ（コンテキスト）</strong><br><br>
-          ・ここにある情報だけを見て考える<br>
-          ・入りきる量は有限<br>
-          ・多すぎると <span class="highlight">だいじな所を探しにくくなる</span>
+          <strong>AIが参照する一時的な情報領域</strong><br><br>
+          ・ここにある情報をもとに判断する<br>
+          ・入れられる情報量には上限がある<br>
+          ・多すぎると <span class="highlight">重要情報が埋もれる</span> 可能性がある
         </div>
         <div class="box">
           <strong>中身の例</strong><br><br>
-          ・ルール（システムプロンプト）<br>
-          ・会話の最近のログ<br>
-          ・ツールの説明と結果<br>
-          ・外部メモから取り込んだ要約 など
+          ・ルール、役割、制約条件<br>
+          ・直近の会話ログ<br>
+          ・ツールの説明と実行結果<br>
+          ・外部メモや資料から取り込んだ要約
         </div>
       </div>
     </div>
 
     <div class="diagram">
-      <div class="diagram-title">図2：コンテキスト・エンジニアリング = メモの中身をデザインする人</div>
+      <div class="diagram-title">図2：コンテキスト設計の基本ステップ</div>
       <div class="step-row">
         <div class="step-pill">
           <span class="step-num">1</span>
-          ゴールを決める（AIに何をさせたい？）
+          ゴールを明確にする
         </div>
         <div class="step-pill">
           <span class="step-num">2</span>
-          本当に必要な情報だけ選ぶ
+          必要な情報だけを選ぶ
         </div>
         <div class="step-pill">
           <span class="step-num">3</span>
-          「ルール → 道具＆スキル → 今の状況」の順で並べる
+          ルール → ツール → スキル → 現在の状況の順に整理する
         </div>
         <div class="step-pill">
           <span class="step-num">4</span>
-          長くなったら要約して軽くする
+          長くなったら要約・外部メモ化する
         </div>
       </div>
     </div>
 
     <div class="diagram">
-      <div class="diagram-title">図3：コンテキストを作る4パーツ（超ざっくり）</div>
+      <div class="diagram-title">図3：コンテキストを構成する5つの要素</div>
       <div class="flex">
         <div class="box">
           <strong>① ルール</strong><br>
-          ・AIの役割・口調・NG行動<br>
-          ・シンプル＆具体的が正解
+          ・AIの役割、口調、禁止事項<br>
+          ・守るべき社内ルールや制約
         </div>
         <div class="box">
-          <strong>② ツール＆スキル</strong><br>
-          ・ツール：検索・DB・コード実行など、外部システムへの窓<br>
-          ・スキル：特定タスク用に「ツールの使い方＋プロンプト＋手順」をまとめた再利用可能な得意ワザ集<br>
-          <span class="small">
-            MCP を使うと、こうしたツールやスキルを共通の形式で追加・共有しやすくなります。[https://modelcontextprotocol.io/docs/getting-started/intro][https://github.com/modelcontextprotocol]
-          </span>
+          <strong>② ツール</strong><br>
+          ・検索、DB、SaaS、コード実行など<br>
+          ・MCPはツール接続を標準化するための代表的な仕組み
         </div>
         <div class="box">
-          <strong>③ お手本</strong><br>
-          ・「こういう回答をしてほしい」の例<br>
-          ・典型例を少数だけ
+          <strong>③ スキル</strong><br>
+          ・業務手順、判断基準、プロンプト例、参照資料<br>
+          ・社内ノウハウを再利用可能にする単位
         </div>
         <div class="box">
-          <strong>④ 会話ログ</strong><br>
-          ・直近のやりとりの重要部分だけ<br>
-          ・古い細かいログは要約 or 外だし
+          <strong>④ お手本</strong><br>
+          ・期待するアウトプット例<br>
+          ・典型例を少数だけ示す
+        </div>
+        <div class="box">
+          <strong>⑤ 会話ログ／メモ</strong><br>
+          ・直近の重要なやりとり<br>
+          ・古い情報は要約または外部メモへ退避
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 3. 長いタスク用テクニック -->
   <section id="long-tasks">
-    <h2>3. 長いタスクを回すための「3つの技」</h2>
+    <h2>3. 長いタスクを回すための「3つの技術」</h2>
 
     <div class="diagram">
-      <div class="diagram-title">図4：3つまとめて図解</div>
+      <div class="diagram-title">図4：長時間タスクのための工夫</div>
       <div class="flex">
         <div class="box box-strong">
           <strong>技① コンパクション</strong><br><br>
-          ・会話が長くなったら<br>
-          → AIに「ここまでの要点メモ」を書かせる<br>
-          → そのメモだけコンテキストに残す
+          ・会話や作業履歴が長くなったら要約する<br>
+          ・重要な決定事項、前提、未完了タスクだけを残す
         </div>
         <div class="box box-good">
-          <strong>技② ノート（外部メモ）</strong><br><br>
-          ・長期の目標・TODO・決定事項は<br>
-          → コンテキストの外のファイルに保存<br>
-          → 必要なときだけ読み込む
+          <strong>技② 外部メモ</strong><br><br>
+          ・長期の目標、TODO、決定事項を外部ファイルに保存<br>
+          ・必要なときだけ読み込む
         </div>
         <div class="box">
           <strong>技③ サブエージェント</strong><br><br>
-          ・1つの大きな仕事を<br>
-          → 小さな専門エージェントに分担させる<br>
-          → 各エージェントは自分のコンテキストだけ持つ
-        </div>
-      </div>
-    </div>
-
-    <div class="diagram">
-      <div class="diagram-title">図5：時間の流れで見ると</div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <span class="pill">Step 1</span>
-          ゴールとルールを決める（システムプロンプト＋ツール＆スキルセット）
-        </div>
-        <div class="timeline-item">
-          <span class="pill">Step 2</span>
-          エージェントがツール・スキルを使いながら作業を進める
-        </div>
-        <div class="timeline-item">
-          <span class="pill">Step 3</span>
-          会話が長くなったらコンパクション＆ノートへ退避
-        </div>
-        <div class="timeline-item">
-          <span class="pill">Step 4</span>
-          必要に応じてサブエージェントを起こして深掘り
+          ・大きな仕事を小さな専門タスクに分ける<br>
+          ・調査、要約、検証などを分担させる
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 4. Q&Aキャラコーナー -->
   <section id="qa-characters">
     <h2>4. キャラでざっくりQ＆A</h2>
     <p class="small">登場人物：<strong>コンテ君</strong>（生徒）と <strong>AI先生</strong>（教授）</p>
@@ -498,8 +492,8 @@
           AI先生
         </div>
         <div class="speech">
-          A. AIが「今まとめて読めるメモ」のことだよ。<br>
-          ここに <span class="highlight">何を・どれだけ・どんな順番で</span> 書くかを工夫するのがコンテキスト・エンジニアリングなんだ。
+          A. AIが「今参照できる情報」のことです。<br>
+          ここに <span class="highlight">何を・どれだけ・どんな順番で</span> 入れるかを設計することが重要です。
         </div>
       </div>
 
@@ -511,7 +505,7 @@
           コンテ君
         </div>
         <div class="speech">
-          Q. じゃあ、できるだけたくさん情報を入れたほうがいい？
+          Q. できるだけたくさん情報を入れたほうがいい？
         </div>
       </div>
       <div class="qa-item">
@@ -522,9 +516,9 @@
           AI先生
         </div>
         <div class="speech">
-          A. 実は逆なんだ。<br>
-          入れすぎると、AIの注意力がバラけて「大事な情報」が埋もれちゃう。<br>
-          <span class="highlight">少なくて、でもすごく役に立つ情報だけ</span> を選ぶのがコツだよ。
+          A. 必ずしもそうではありません。<br>
+          情報が多すぎると重要な情報が埋もれます。<br>
+          <span class="highlight">少なく、構造化され、業務に役立つ情報</span>を渡すことが大切です。
         </div>
       </div>
 
@@ -536,7 +530,7 @@
           コンテ君
         </div>
         <div class="speech">
-          Q. 今日からできる「コンテキスト上手な質問のしかた」は？
+          Q. エージェントに任せるときに注意することは？
         </div>
       </div>
       <div class="qa-item">
@@ -547,252 +541,209 @@
           AI先生
         </div>
         <div class="speech">
-          A. 例えばこの3つだけ意識しよう。<br>
-          ① 最初に「ゴール」を1行で書く<br>
-          ② 条件は「本当に必要なもの」だけにしぼる<br>
-          ③ 長くなったら「ここまでを要約して」と頼む  
-          これだけでも、かなり「コンテキストうまい人」だよ。
+          A. 「どこまで自動でよいか」を決めることです。<br>
+          送信、削除、承認、外部公開、本番環境の変更などは、原則として<span class="highlight">人の確認</span>を挟みましょう。
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 5. 要約カード -->
   <section id="summary-cards">
     <h2>5. 3分で流れをつかむ要約カード</h2>
 
     <div class="card-grid">
       <div class="card">
-        <div class="card-title"><span class="card-badge">CARD 1</span> 世界線の変化</div>
+        <div class="card-title"><span class="card-badge">CARD 1</span> 活用スタイルの変化</div>
         <ul>
-          <li>チャット × プロンプト → エージェント × コンテキスト へ</li>
-          <li>人の仕事：プロンプト職人 → コンテキスト設計者</li>
+          <li>チャット活用から、業務プロセスに組み込むエージェント活用へ</li>
+          <li>人の役割は、依頼文作成から設計・監督へ広がる</li>
         </ul>
       </div>
 
       <div class="card">
-        <div class="card-title"><span class="card-badge">CARD 2</span> コンテキスト・エンジニアリング</div>
+        <div class="card-title"><span class="card-badge">CARD 2</span> コンテキスト設計</div>
         <ul>
-          <li>AIの一時メモに入れる情報をデザインすること</li>
-          <li>少なくて役立つ情報だけを、良い順番で</li>
+          <li>AIが参照する情報を設計すること</li>
+          <li>情報は多さよりも、厳選・構造化・順序が重要</li>
         </ul>
       </div>
 
       <div class="card">
-        <div class="card-title"><span class="card-badge">CARD 3</span> 4つのパーツ</div>
+        <div class="card-title"><span class="card-badge">CARD 3</span> MCPとスキル</div>
         <ul>
-          <li>① ルール ② ツール＆スキル ③ お手本 ④ 会話ログ</li>
-          <li>どれも「足しすぎない・分かりやすく」が基本</li>
+          <li>MCP：外部ツールやデータとの接続を標準化する仕組み</li>
+          <li>スキル：業務手順や判断基準を再利用可能にしたもの</li>
         </ul>
       </div>
 
       <div class="card">
-        <div class="card-title"><span class="card-badge">CARD 4</span> 長いタスクの3技</div>
+        <div class="card-title"><span class="card-badge">CARD 4</span> 長いタスクの工夫</div>
         <ul>
-          <li>コンパクション（要約）</li>
-          <li>外部ノート（メモ）</li>
-          <li>サブエージェント（役割分担）</li>
+          <li>コンパクション</li>
+          <li>外部メモ</li>
+          <li>サブエージェント</li>
         </ul>
       </div>
 
       <div class="card">
-        <div class="card-title"><span class="card-badge">CARD 5</span> 実務でのチェックリスト</div>
+        <div class="card-title"><span class="card-badge">CARD 5</span> ガバナンス</div>
         <ul>
-          <li>情報：多さより「厳選」と「構造」</li>
-          <li>ツール＆スキル：少数精鋭で役割と使い方をはっきり</li>
-          <li>困ったら：シンプルに作り → 失敗を見て少しずつ足す</li>
+          <li>AIが実行できる範囲を明確にする</li>
+          <li>重要操作は人が確認する</li>
+          <li>ログを残し、後から追跡できるようにする</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- 6. 社内をチャット時代からエージェント時代へ移行させるには？ -->
   <section id="org-migration">
-    <h2>6. 当社内をどうエージェント時代へ移行させるか（課題と対策の図解）</h2>
+    <h2>6. 社内をエージェント活用へ移行させるには</h2>
 
     <div class="diagram">
-      <div class="diagram-title">図6-1：よくある「社内の4つの課題」</div>
+      <div class="diagram-title">図6-1：よくある社内課題</div>
       <div class="flex">
         <div class="box box-warn">
-          <strong>課題1：使い方がバラバラ</strong><br><br>
-          ・部署ごとに別のチャットAIを好き勝手に利用<br>
-          ・履歴・ノウハウが共有されず、再現性がない
+          <strong>課題1：使い方が部門ごとに異なる</strong><br><br>
+          ・部署ごとに個別最適で利用している<br>
+          ・履歴やノウハウが共有されにくい
         </div>
         <div class="box box-warn">
           <strong>課題2：業務システムとつながっていない</strong><br><br>
-          ・メール／SaaS／自社DBとAIが分断<br>
-          ・コピペ前提で「半手作業」のまま
+          ・メール、SaaS、社内DBとAIが分断されている<br>
+          ・コピペ前提の作業が残っている
         </div>
         <div class="box box-warn">
-          <strong>課題3：スキルが人依存</strong><br><br>
-          ・「プロンプトのうまい人」だけが成果を出す<br>
-          ・属人ノウハウがエージェント化されていない
+          <strong>課題3：ノウハウが人に依存している</strong><br><br>
+          ・特定の人だけがうまく使える<br>
+          ・手順や判断基準が標準化されていない
         </div>
         <div class="box box-warn">
-          <strong>課題4：ガバナンス不安</strong><br><br>
-          ・どこまで任せてよいか不明瞭<br>
-          ・ログ／責任範囲／情報漏えいリスクが心配
+          <strong>課題4：ガバナンスへの不安</strong><br><br>
+          ・どこまで任せてよいか不明確<br>
+          ・ログ、責任範囲、情報漏えいリスクが懸念される
         </div>
       </div>
     </div>
 
     <div class="diagram">
-      <div class="diagram-title">図6-2：チャット時代 → エージェント時代への「4ステップ・ロードマップ」</div>
+      <div class="diagram-title">図6-2：4ステップ・ロードマップ</div>
       <div class="timeline">
         <div class="timeline-item">
           <span class="pill">Phase 1</span>
-          <strong>チャット活用の「標準フォーム」を作る</strong><br>
-          ・部門横断で「質問テンプレ」「NG例」「共有用タグ」を統一<br>
-          ・Slack / Teams などに「AI相談チャンネル」を用意し、良いプロンプト事例を蓄積
+          <strong>チャット活用の標準フォームを作る</strong><br>
+          ・依頼テンプレート、NG例、共有タグを統一<br>
+          ・Slack / Teams などにAI活用事例を蓄積
         </div>
         <div class="timeline-item">
           <span class="pill">Phase 2</span>
-          <strong>重点業務で小さなエージェントPoC</strong><br>
-          ・影響が大きく、かつ手順が定型なタスクを1〜2個選ぶ<br>
-          ・例：レポート雛形作成、ログ一次調査、FAQ回答など<br>
-          ・MCP＋ツール＆スキルで「半自動エージェント」を作り、少人数で試す
+          <strong>重点業務で小さなPoCを行う</strong><br>
+          ・影響が大きく、手順が比較的定型な業務を選ぶ<br>
+          ・例：レポート下書き、FAQ回答案、ログ一次調査、議事録要約
         </div>
         <div class="timeline-item">
           <span class="pill">Phase 3</span>
-          <strong>MCPベースの共通「ツール＆スキル基盤」を整える</strong><br>
-          ・社内のよく使うSaaS・DBへの接続を MCP サーバーとして整備[https://modelcontextprotocol.io/docs/getting-started/intro]<br>
-          ・「レポート作成スキル」「調査スキル」などを再利用可能なスキルとして定義し、  
-          &nbsp;各エージェントから共通で呼び出せるようにする[https://github.com/modelcontextprotocol]
+          <strong>ツール接続と業務スキルを整備する</strong><br>
+          ・主要SaaSやDBへの接続はMCPなどで標準化する<br>
+          ・「調査スキル」「資料作成スキル」などは、社内スキル集として管理する
         </div>
         <div class="timeline-item">
           <span class="pill">Phase 4</span>
-          <strong>ガバナンスとモニタリングをセットで運用開始</strong><br>
-          ・エージェントごとに「できること／できないこと」を明文化（権限スコープ）<br>
-          ・ログ・監査・レビューの仕組みを用意し、「どの判断をAIに任せたか」を後から追えるようにする
+          <strong>ガバナンスとモニタリングを運用に組み込む</strong><br>
+          ・エージェントごとに権限範囲を定義<br>
+          ・ログ、監査、レビュー、人の確認フローを用意する
         </div>
       </div>
     </div>
 
     <div class="diagram">
-      <div class="diagram-title">図6-3：課題 ↔ 対策マップ（1枚まとめ）</div>
+      <div class="diagram-title">図6-3：人の確認が必要な操作の例</div>
       <div class="flex">
         <div class="box box-warn">
-          <strong>課題1：使い方がバラバラ</strong><br>
-          ⇒ <span class="highlight">対策：標準フォーム＋事例共有</span><br><br>
-          ・共通テンプレ／タグ付けルールを用意<br>
-          ・良いプロンプト・回答をナレッジ化
+          <strong>外部送信</strong><br>
+          ・顧客へのメール送信<br>
+          ・社外チャットへの投稿<br>
+          ・外部フォーム送信
         </div>
-        <div class="box box-good">
-          <strong>課題2：システムとつながらない</strong><br>
-          ⇒ <span class="highlight">対策：MCPで共通ツール化</span><br><br>
-          ・主要SaaS／DBをMCPツールとして定義<br>
-          ・どのエージェントからも同じ呼び方で利用
+        <div class="box box-warn">
+          <strong>削除・更新</strong><br>
+          ・ファイル削除<br>
+          ・DB更新<br>
+          ・チケットのクローズ
         </div>
-        <div class="box box-good">
-          <strong>課題3：スキルが人依存</strong><br>
-          ⇒ <span class="highlight">対策：スキルとして切り出す</span><br><br>
-          ・「うまい手順」をスキル化（手順＋プロンプト＋ツール）<br>
-          ・MCP上に公開し、全エージェントで共有
+        <div class="box box-warn">
+          <strong>承認・契約・金銭</strong><br>
+          ・発注、支払い、契約承認<br>
+          ・見積や価格条件の確定
         </div>
-        <div class="box box-good">
-          <strong>課題4：ガバナンス不安</strong><br>
-          ⇒ <span class="highlight">対策：権限・ログ・責任の設計</span><br><br>
-          ・エージェントごとに権限スコープを定義<br>
-          ・ログ監査と人の最終確認フローを組み合わせる
+        <div class="box box-warn">
+          <strong>機密・個人情報</strong><br>
+          ・個人情報を含む処理<br>
+          ・機密資料の外部共有<br>
+          ・本番環境への変更
         </div>
       </div>
-    </div>
-
-    <div class="diagram">
-      <div class="diagram-title">図6-4：社内で説明するときの「一言フレーズ」</div>
-      <ul style="font-size:0.9rem; padding-left:1.1em;">
-        <li>「まずはチャットを整える → その上にエージェントを少しずつ載せていく」</li>
-        <li>「人の得意ワザを <span class="highlight">スキル＋ツール</span> にして、誰でも使えるようにする」</li>
-        <li>「便利さと同じくらい、<span class="highlight">権限・ログ・責任</span>をちゃんと設計する」</li>
-      </ul>
+      <p class="small">
+        原則：AIは下書き・候補作成・一次調査を担当し、重要な判断や外部影響のある操作は人が確認します。
+      </p>
     </div>
   </section>
 
-  <!-- 7. 最近のAIエージェントの参考情報 -->
   <section id="recent-agents">
-    <h2>7. 最近のAIエージェントの参考情報（ざっくり地図）</h2>
+    <h2>7. 最近のAIエージェント関連の公式参考情報</h2>
 
     <div class="diagram">
-      <div class="diagram-title">図7：代表的なエージェントと役割イメージ</div>
+      <div class="diagram-title">公式情報を中心に確認する</div>
       <div class="card-grid">
         <div class="card">
-          <div class="card-title"><span class="card-badge">1</span> Claude Code / Cowork（Anthropic）</div>
+          <div class="card-title"><span class="card-badge">1</span> Anthropic / Claude</div>
           <ul>
-            <li>得意：コード・データ分析を長時間サポート</li>
-            <li>ポイント：
-              <ul>
-                <li>リポジトリ探索＋必要ファイルだけ読み込み</li>
-                <li>コンパクション＆メモリで長いタスクを継続</li>
-              </ul>
-            </li>
+            <li>コンテキスト設計、Claude Code、エージェント活用の考え方</li>
             <li class="small">
-              技術背景：[Anthropic公式のコンテキスト解説][https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents]  
-              自律性評価：[https://www.anthropic.com/news/measuring-agent-autonomy]
+              <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener noreferrer">Effective context engineering for AI agents</a><br>
+              <a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank" rel="noopener noreferrer">Claude Code Docs</a>
             </li>
           </ul>
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="card-badge">2</span> OpenAI系エージェント</div>
+          <div class="card-title"><span class="card-badge">2</span> OpenAI</div>
           <ul>
-            <li>得意：コード修正・ブラウジング・タスク自動化</li>
-            <li>ポイント：
-              <ul>
-                <li>ツール呼び出し＋コード実行＋検索を組み合わせ</li>
-                <li>IDEやアプリに組み込んで「開発補助エージェント」として利用</li>
-              </ul>
-            </li>
+            <li>Agents、Tools、Function Calling などの公式ドキュメント</li>
             <li class="small">
-              比較 overview：[https://bosio.digital/articles/agent-arms-race-openai-anthropic-google]
+              <a href="https://platform.openai.com/docs/guides/agents" target="_blank" rel="noopener noreferrer">OpenAI Agents Guide</a><br>
+              <a href="https://platform.openai.com/docs/guides/tools" target="_blank" rel="noopener noreferrer">OpenAI Tools Guide</a>
             </li>
           </ul>
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="card-badge">3</span> Google 系エージェント</div>
+          <div class="card-title"><span class="card-badge">3</span> Google Cloud / Gemini</div>
           <ul>
-            <li>得意：検索＋Workspace（Gmail / Docs / Sheets）連携</li>
-            <li>ポイント：
-              <ul>
-                <li>社内ドキュメントを横断して回答・要約</li>
-                <li>クラウド上のデータ分析を半自動で回す</li>
-              </ul>
-            </li>
+            <li>Vertex AI Agent Builder、Gemini for Workspace など</li>
             <li class="small">
-              トレンド解説：[https://actgsys.com/en/blog/google-ai-agent-trends-2026]
+              <a href="https://cloud.google.com/products/agent-builder" target="_blank" rel="noopener noreferrer">Vertex AI Agent Builder</a><br>
+              <a href="https://workspace.google.com/products/gemini/" target="_blank" rel="noopener noreferrer">Gemini for Workspace</a>
             </li>
           </ul>
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="card-badge">4</span> NVIDIA Agent Toolkit 系</div>
+          <div class="card-title"><span class="card-badge">4</span> Microsoft</div>
           <ul>
-            <li>得意：産業・エンタープライズ向けワークフロー自動化</li>
-            <li>ポイント：
-              <ul>
-                <li>GPU＋企業データ＋外部ツールをつなぐ土台</li>
-                <li>複数エージェントを協調させる設計がしやすい</li>
-              </ul>
-            </li>
+            <li>Copilot Studio など、業務向けエージェント構築</li>
             <li class="small">
-              概要：[http://nvidianews.nvidia.com/news/ai-agents]
+              <a href="https://www.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-studio" target="_blank" rel="noopener noreferrer">Microsoft Copilot Studio</a>
             </li>
           </ul>
         </div>
 
         <div class="card">
-          <div class="card-title"><span class="card-badge">5</span> 企業内カスタムエージェント</div>
+          <div class="card-title"><span class="card-badge">5</span> MCP</div>
           <ul>
-            <li>得意：自社用カスタマーサポート・資料作成・運用自動化</li>
-            <li>ポイント：
-              <ul>
-                <li>社内ナレッジ＋RAG＋ツール＆スキルを組み合わせた「社内専用AI」</li>
-                <li>エージェントごとにコンテキスト設計がカギ</li>
-              </ul>
-            </li>
+            <li>AIと外部ツール／データをつなぐ共通プロトコル</li>
             <li class="small">
-              事例・動向：[https://www.prosus.com/news-insights/2026/state-of-ai-agents-2026-autonomy-is-here]  
-              セキュリティ分野の予測：[https://www.paloaltonetworks.com/blog/2025/11/2026-predictions-for-autonomous-ai/]
+              <a href="https://modelcontextprotocol.io/docs/getting-started/intro" target="_blank" rel="noopener noreferrer">MCP Official Docs</a><br>
+              <a href="https://github.com/modelcontextprotocol" target="_blank" rel="noopener noreferrer">MCP GitHub</a>
             </li>
           </ul>
         </div>
@@ -800,17 +751,46 @@
     </div>
   </section>
 
-  <!-- 8. 共通ポイント -->
   <section id="agents-common">
-    <h2>8. どのエージェントにも共通するポイント</h2>
+    <h2>8. どのエージェントにも共通する設計ポイント</h2>
 
     <div class="diagram">
-      <div class="diagram-title">図8：共通の設計ポイント</div>
+      <div class="diagram-title">共通の設計ポイント</div>
       <ul style="font-size:0.9rem; padding-left:1.1em;">
-        <li>どのエージェントも「コンテキスト設計」が性能のボトルネックになりやすい</li>
-        <li>プロンプト1本勝負より、<span class="highlight">ルール・ツール＆スキル・ノート・要約</span>の設計が重要</li>
-        <li>小さく作って、ログを見ながら「何をコンテキストに残すか／スキルに切り出すか」をチューニングしていくのが現実的な進め方</li>
+        <li>エージェントの性能は、モデル単体だけでなく、コンテキスト設計に大きく左右される</li>
+        <li>プロンプトだけでなく、<span class="highlight">ルール・ツール・スキル・メモ・要約・権限</span>をセットで設計する</li>
+        <li>小さく作り、ログを見ながら「何を渡すか／何を外に出すか／どこを人が確認するか」を改善する</li>
       </ul>
+    </div>
+  </section>
+
+  <section id="next-actions">
+    <h2>9. 明日から何をするか</h2>
+
+    <div class="diagram">
+      <div class="diagram-title">まず始める5つの行動</div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title"><span class="card-badge">1</span> よく使う依頼文を共有する</div>
+          <p>各チームで、効果があったAIへの依頼文を1つ共有する。</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="card-badge">2</span> 定型業務を1つ選ぶ</div>
+          <p>議事録要約、FAQ回答案、資料下書きなど、AIで支援しやすい業務を1つ選ぶ。</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="card-badge">3</span> 必要な情報を整理する</div>
+          <p>その業務に必要なルール、参考資料、出力形式、NG事項を整理する。</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="card-badge">4</span> 人の確認ポイントを決める</div>
+          <p>外部送信、削除、承認、本番変更など、人が必ず確認する操作を明確にする。</p>
+        </div>
+        <div class="card">
+          <div class="card-title"><span class="card-badge">5</span> 小さく試してログを見る</div>
+          <p>いきなり全社展開せず、少人数で試し、ログを見ながら改善する。</p>
+        </div>
+      </div>
     </div>
   </section>
 
