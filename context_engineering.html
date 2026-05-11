@@ -171,7 +171,7 @@
     }
     .character {
       width: 64px;
-      text-align: center;
+      text覧:center;
       font-size: 0.75rem;
     }
     .char-icon {
@@ -347,7 +347,7 @@
     </p>
   </section>
 
-  <!-- 2. Anthropic記事のエッセンス（図解メイン＋ツール＆スキル） -->
+  <!-- 2. Anthropic記事のエッセンス -->
   <section id="anthropic-core">
     <h2>2. Anthropic記事のポイントを図だけでつかむ</h2>
 
@@ -403,8 +403,7 @@
         <div class="box">
           <strong>② ツール＆スキル</strong><br>
           ・ツール：検索・DB・コード実行など、外部システムへの窓<br>
-          ・スキル：特定タスク用に「ツールの使い方＋プロンプト＋手順」をまとめた<br>
-          &nbsp;&nbsp;再利用可能な得意ワザ集（例：ログ調査スキル、レポート作成スキル）<br>
+          ・スキル：特定タスク用に「ツールの使い方＋プロンプト＋手順」をまとめた再利用可能な得意ワザ集<br>
           <span class="small">
             MCP を使うと、こうしたツールやスキルを共通の形式で追加・共有しやすくなります。[https://modelcontextprotocol.io/docs/getting-started/intro][https://github.com/modelcontextprotocol]
           </span>
@@ -423,7 +422,7 @@
     </div>
   </section>
 
-  <!-- 3. 長いタスク用テクニック（圧縮版） -->
+  <!-- 3. 長いタスク用テクニック -->
   <section id="long-tasks">
     <h2>3. 長いタスクを回すための「3つの技」</h2>
 
@@ -474,7 +473,7 @@
     </div>
   </section>
 
-  <!-- 4. Q&Aキャラコーナー（教授＋生徒画像版） -->
+  <!-- 4. Q&Aキャラコーナー -->
   <section id="qa-characters">
     <h2>4. キャラでざっくりQ＆A</h2>
     <p class="small">登場人物：<strong>コンテ君</strong>（生徒）と <strong>AI先生</strong>（教授）</p>
@@ -483,7 +482,6 @@
       <div class="qa-item">
         <div class="character">
           <div class="char-icon">
-            <!-- 生徒用画像：images/student.png を用意 -->
             <img src="images/student.png" alt="コンテ君">
           </div>
           コンテ君
@@ -495,7 +493,6 @@
       <div class="qa-item">
         <div class="character">
           <div class="char-icon char-icon-teacher">
-            <!-- 教授用画像：images/professor.png を用意 -->
             <img src="images/professor.png" alt="AI先生">
           </div>
           AI先生
@@ -560,7 +557,7 @@
     </div>
   </section>
 
-  <!-- 5. 3分で流れをつかむ要約カード -->
+  <!-- 5. 要約カード -->
   <section id="summary-cards">
     <h2>5. 3分で流れをつかむ要約カード</h2>
 
@@ -609,12 +606,114 @@
     </div>
   </section>
 
-  <!-- 6. 最近のAIエージェントの参考情報 -->
-  <section id="recent-agents">
-    <h2>6. 最近のAIエージェントの参考情報（ざっくり地図）</h2>
+  <!-- 6. 社内をチャット時代からエージェント時代へ移行させるには？ -->
+  <section id="org-migration">
+    <h2>6. 当社内をどうエージェント時代へ移行させるか（課題と対策の図解）</h2>
 
     <div class="diagram">
-      <div class="diagram-title">図6：代表的なエージェントと役割イメージ</div>
+      <div class="diagram-title">図6-1：よくある「社内の4つの課題」</div>
+      <div class="flex">
+        <div class="box box-warn">
+          <strong>課題1：使い方がバラバラ</strong><br><br>
+          ・部署ごとに別のチャットAIを好き勝手に利用<br>
+          ・履歴・ノウハウが共有されず、再現性がない
+        </div>
+        <div class="box box-warn">
+          <strong>課題2：業務システムとつながっていない</strong><br><br>
+          ・メール／SaaS／自社DBとAIが分断<br>
+          ・コピペ前提で「半手作業」のまま
+        </div>
+        <div class="box box-warn">
+          <strong>課題3：スキルが人依存</strong><br><br>
+          ・「プロンプトのうまい人」だけが成果を出す<br>
+          ・属人ノウハウがエージェント化されていない
+        </div>
+        <div class="box box-warn">
+          <strong>課題4：ガバナンス不安</strong><br><br>
+          ・どこまで任せてよいか不明瞭<br>
+          ・ログ／責任範囲／情報漏えいリスクが心配
+        </div>
+      </div>
+    </div>
+
+    <div class="diagram">
+      <div class="diagram-title">図6-2：チャット時代 → エージェント時代への「4ステップ・ロードマップ」</div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="pill">Phase 1</span>
+          <strong>チャット活用の「標準フォーム」を作る</strong><br>
+          ・部門横断で「質問テンプレ」「NG例」「共有用タグ」を統一<br>
+          ・Slack / Teams などに「AI相談チャンネル」を用意し、良いプロンプト事例を蓄積
+        </div>
+        <div class="timeline-item">
+          <span class="pill">Phase 2</span>
+          <strong>重点業務で小さなエージェントPoC</strong><br>
+          ・影響が大きく、かつ手順が定型なタスクを1〜2個選ぶ<br>
+          ・例：レポート雛形作成、ログ一次調査、FAQ回答など<br>
+          ・MCP＋ツール＆スキルで「半自動エージェント」を作り、少人数で試す
+        </div>
+        <div class="timeline-item">
+          <span class="pill">Phase 3</span>
+          <strong>MCPベースの共通「ツール＆スキル基盤」を整える</strong><br>
+          ・社内のよく使うSaaS・DBへの接続を MCP サーバーとして整備[https://modelcontextprotocol.io/docs/getting-started/intro]<br>
+          ・「レポート作成スキル」「調査スキル」などを再利用可能なスキルとして定義し、  
+          &nbsp;各エージェントから共通で呼び出せるようにする[https://github.com/modelcontextprotocol]
+        </div>
+        <div class="timeline-item">
+          <span class="pill">Phase 4</span>
+          <strong>ガバナンスとモニタリングをセットで運用開始</strong><br>
+          ・エージェントごとに「できること／できないこと」を明文化（権限スコープ）<br>
+          ・ログ・監査・レビューの仕組みを用意し、「どの判断をAIに任せたか」を後から追えるようにする
+        </div>
+      </div>
+    </div>
+
+    <div class="diagram">
+      <div class="diagram-title">図6-3：課題 ↔ 対策マップ（1枚まとめ）</div>
+      <div class="flex">
+        <div class="box box-warn">
+          <strong>課題1：使い方がバラバラ</strong><br>
+          ⇒ <span class="highlight">対策：標準フォーム＋事例共有</span><br><br>
+          ・共通テンプレ／タグ付けルールを用意<br>
+          ・良いプロンプト・回答をナレッジ化
+        </div>
+        <div class="box box-good">
+          <strong>課題2：システムとつながらない</strong><br>
+          ⇒ <span class="highlight">対策：MCPで共通ツール化</span><br><br>
+          ・主要SaaS／DBをMCPツールとして定義<br>
+          ・どのエージェントからも同じ呼び方で利用
+        </div>
+        <div class="box box-good">
+          <strong>課題3：スキルが人依存</strong><br>
+          ⇒ <span class="highlight">対策：スキルとして切り出す</span><br><br>
+          ・「うまい手順」をスキル化（手順＋プロンプト＋ツール）<br>
+          ・MCP上に公開し、全エージェントで共有
+        </div>
+        <div class="box box-good">
+          <strong>課題4：ガバナンス不安</strong><br>
+          ⇒ <span class="highlight">対策：権限・ログ・責任の設計</span><br><br>
+          ・エージェントごとに権限スコープを定義<br>
+          ・ログ監査と人の最終確認フローを組み合わせる
+        </div>
+      </div>
+    </div>
+
+    <div class="diagram">
+      <div class="diagram-title">図6-4：社内で説明するときの「一言フレーズ」</div>
+      <ul style="font-size:0.9rem; padding-left:1.1em;">
+        <li>「まずはチャットを整える → その上にエージェントを少しずつ載せていく」</li>
+        <li>「人の得意ワザを <span class="highlight">スキル＋ツール</span> にして、誰でも使えるようにする」</li>
+        <li>「便利さと同じくらい、<span class="highlight">権限・ログ・責任</span>をちゃんと設計する」</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 7. 最近のAIエージェントの参考情報 -->
+  <section id="recent-agents">
+    <h2>7. 最近のAIエージェントの参考情報（ざっくり地図）</h2>
+
+    <div class="diagram">
+      <div class="diagram-title">図7：代表的なエージェントと役割イメージ</div>
       <div class="card-grid">
         <div class="card">
           <div class="card-title"><span class="card-badge">1</span> Claude Code / Cowork（Anthropic）</div>
@@ -701,109 +800,7 @@
     </div>
   </section>
 
-  <!-- 7. 社内をチャット時代からエージェント時代へ移行させるには？ -->
-  <section id="org-migration">
-    <h2>7. 当社内をどうエージェント時代へ移行させるか（課題と対策の図解）</h2>
-
-    <div class="diagram">
-      <div class="diagram-title">図7-1：よくある「社内の4つの課題」</div>
-      <div class="flex">
-        <div class="box box-warn">
-          <strong>課題1：使い方がバラバラ</strong><br><br>
-          ・部署ごとに別のチャットAIを好き勝手に利用<br>
-          ・履歴・ノウハウが共有されず、再現性がない
-        </div>
-        <div class="box box-warn">
-          <strong>課題2：業務システムとつながっていない</strong><br><br>
-          ・メール／SaaS／自社DBとAIが分断<br>
-          ・コピペ前提で「半手作業」のまま
-        </div>
-        <div class="box box-warn">
-          <strong>課題3：スキルが人依存</strong><br><br>
-          ・「プロンプトのうまい人」だけが成果を出す<br>
-          ・属人ノウハウがエージェント化されていない
-        </div>
-        <div class="box box-warn">
-          <strong>課題4：ガバナンス不安</strong><br><br>
-          ・どこまで任せてよいか不明瞭<br>
-          ・ログ／責任範囲／情報漏えいリスクが心配
-        </div>
-      </div>
-    </div>
-
-    <div class="diagram">
-      <div class="diagram-title">図7-2：チャット時代 → エージェント時代への「4ステップ・ロードマップ」</div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <span class="pill">Phase 1</span>
-          <strong>チャット活用の「標準フォーム」を作る</strong><br>
-          ・部門横断で「質問テンプレ」「NG例」「共有用タグ」を統一<br>
-          ・Slack / Teams などに「AI相談チャンネル」を用意し、良いプロンプト事例を蓄積
-        </div>
-        <div class="timeline-item">
-          <span class="pill">Phase 2</span>
-          <strong>重点業務で小さなエージェントPoC</strong><br>
-          ・影響が大きく、かつ手順が定型なタスクを1〜2個選ぶ<br>
-          ・例：レポート雛形作成、ログ一次調査、FAQ回答など<br>
-          ・MCP＋ツール＆スキルで「半自動エージェント」を作り、少人数で試す
-        </div>
-        <div class="timeline-item">
-          <span class="pill">Phase 3</span>
-          <strong>MCPベースの共通「ツール＆スキル基盤」を整える</strong><br>
-          ・社内のよく使うSaaS・DBへの接続を MCP サーバーとして整備[https://modelcontextprotocol.io/docs/getting-started/intro]<br>
-          ・「レポート作成スキル」「調査スキル」などを再利用可能なスキルとして定義し、  
-          &nbsp;各エージェントから共通で呼び出せるようにする[https://github.com/modelcontextprotocol]
-        </div>
-        <div class="timeline-item">
-          <span class="pill">Phase 4</span>
-          <strong>ガバナンスとモニタリングをセットで運用開始</strong><br>
-          ・エージェントごとに「できること／できないこと」を明文化（権限スコープ）<br>
-          ・ログ・監査・レビューの仕組みを用意し、「どの判断をAIに任せたか」を後から追えるようにする
-        </div>
-      </div>
-    </div>
-
-    <div class="diagram">
-      <div class="diagram-title">図7-3：課題 ↔ 対策マップ（1枚まとめ）</div>
-      <div class="flex">
-        <div class="box box-warn">
-          <strong>課題1：使い方がバラバラ</strong><br>
-          ⇒ <span class="highlight">対策：標準フォーム＋事例共有</span><br><br>
-          ・共通テンプレ／タグ付けルールを用意<br>
-          ・良いプロンプト・回答をナレッジ化
-        </div>
-        <div class="box box-good">
-          <strong>課題2：システムとつながらない</strong><br>
-          ⇒ <span class="highlight">対策：MCPで共通ツール化</span><br><br>
-          ・主要SaaS／DBをMCPツールとして定義<br>
-          ・どのエージェントからも同じ呼び方で利用
-        </div>
-        <div class="box box-good">
-          <strong>課題3：スキルが人依存</strong><br>
-          ⇒ <span class="highlight">対策：スキルとして切り出す</span><br><br>
-          ・「うまい手順」をスキル化（手順＋プロンプト＋ツール）<br>
-          ・MCP上に公開し、全エージェントで共有
-        </div>
-        <div class="box box-good">
-          <strong>課題4：ガバナンス不安</strong><br>
-          ⇒ <span class="highlight">対策：権限・ログ・責任の設計</span><br><br>
-          ・エージェントごとに権限スコープを定義<br>
-          ・ログ監査と人の最終確認フローを組み合わせる
-        </div>
-      </div>
-    </div>
-
-    <div class="diagram">
-      <div class="diagram-title">図7-4：社内で説明するときの「一言フレーズ」</div>
-      <ul style="font-size:0.9rem; padding-left:1.1em;">
-        <li>「まずはチャットを整える → その上にエージェントを少しずつ載せていく」</li>
-        <li>「人の得意ワザを <span class="highlight">スキル＋ツール</span> にして、誰でも使えるようにする」</li>
-        <li>「便利さと同じくらい、<span class="highlight">権限・ログ・責任</span>をちゃんと設計する」</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- 8. どのエージェントにも共通するポイント（締め） -->
+  <!-- 8. 共通ポイント -->
   <section id="agents-common">
     <h2>8. どのエージェントにも共通するポイント</h2>
 
