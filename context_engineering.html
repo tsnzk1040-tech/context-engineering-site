@@ -721,7 +721,198 @@
       </div>
     </div>
   </section>
+  <!-- ここまでが既存のセクション -->
 
+  <!-- 7. 世界線のシフト：チャット×プロンプト → エージェント×コンテキスト -->
+  <section id="trend-shift">
+    <h2>7. 世界線のシフト：チャット×プロンプトから、エージェント×コンテキストへ</h2>
+
+    <div class="diagram">
+      <div class="diagram-title">図12：AIとの付き合い方の「世代交代」</div>
+      <div class="flex">
+        <div class="box">
+          <strong>昔の世界線：チャット × プロンプト</strong><br><br>
+          ・人間ががんばって「うまいプロンプト」を書く<br>
+          ・1回1回の質問に対して、AIが答えるだけ<br>
+          ・会話の流れやツール利用は、人間が主に管理<br>
+          <span class="small">
+            ※この時代の中心は「プロンプトエンジニアリング」<br>
+            [例: Anthropic 記事でも「数年間はプロンプトが主役だった」と説明][https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents]
+          </span>
+        </div>
+        <div class="box box-good">
+          <strong>今の世界線：エージェント × コンテキスト</strong><br><br>
+          ・AIがツールを自分で選んで使う「エージェント」に<br>
+          ・1回の指示から、何十ステップも自律的に動く<br>
+          ・人間はゴールとルールを決める「文脈デザイナー」に<br>
+          <span class="small">
+            ※「プロンプト書き」ではなく「コンテキスト設計」へ<br>
+            [Context is the new prompt とする解説][https://medium.com/data-science-collective/context-is-the-new-prompt-why-context-engineering-is-shaping-the-future-of-ai-46eb062ed270]  
+            [「プロンプトエンジニアはコンテキストデザイナーに進化」とする分析][https://www.sdggroup.com/es-mx/insights/blog/the-evolution-of-prompt-engineering-to-context-design-in-2026]  
+            [「エージェント時代にはプロンプトではなくコンテキスト・エンジニアリングが重要」とする記事][https://pub.towardsai.net/prompt-engineering-is-dead-for-ai-agents-here-is-what-actually-works-541ceda072de]
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <h3>7-1. なぜ「プロンプト職人」から「コンテキスト設計者」へ？</h3>
+    <div class="diagram">
+      <div class="diagram-title">図13：仕事の重心がうつる理由</div>
+      <div class="step-list">
+        <div class="step">
+          <span class="step-num">1</span>
+          モデル性能が上がり、少し雑な指示でも理解できるようになった  
+          → 細かい言い回しより、<span class="highlight">入れる情報の選び方</span>が重要に  
+          <span class="small">
+            [Anthropic: コンテキスト全体の設計が重要だと説明][https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents]
+          </span>
+        </div>
+        <div class="step">
+          <span class="step-num">2</span>
+          ツールを使うエージェントが増え、<br>
+          「検索・実行・要約」をAIがループで回す時代に  
+          <span class="small">
+            [エージェントがツールを使うループとして定義されている][https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents]
+          </span>
+        </div>
+        <div class="step">
+          <span class="step-num">3</span>
+          そこで人間の役割は、<br>
+          ・どんなルールを与えるか（システム設計）<br>
+          ・どんなメモリ・ノート・ツールを持たせるか（環境設計）<br>
+          ・どこまで自律させるか（安全設計）  
+          といった<strong>「コンテキスト全体のデザイン」</strong>に移っている。
+        </div>
+      </div>
+    </div>
+
+    <h3>7-2. 業界全体でも「エージェント前提」のトレンド</h3>
+    <p>
+      各社・各調査でも「これからの主戦場はエージェント」とするレポートが増えています。
+    </p>
+    <ul>
+      <li>
+        大手VCや企業のレポートでは、2026年ごろには
+        「ビジネス現場の多くのタスクがエージェント化される」と予測
+        [https://www.prosus.com/news-insights/2026/state-of-ai-agents-2026-autonomy-is-here]  
+        [https://www.paloaltonetworks.com/blog/2025/11/2026-predictions-for-autonomous-ai/]
+      </li>
+      <li>
+        Google の2026年エージェントトレンド解説では、
+        「チャットボットから自律的に動くエージェントへの移行」が
+        大きな流れとして整理されている
+        [https://actgsys.com/en/blog/google-ai-agent-trends-2026]
+      </li>
+      <li>
+        実務者向けの記事でも、
+        「プロンプト調整よりも、コンテキストとツール設計のほうが
+        生産性インパクトが大きい」と報告されている
+        [https://darren-broemmer.medium.com/from-prompt-engineering-to-ai-agents-three-paradigms-in-three-years-f7c77ac79487]
+      </li>
+    </ul>
+  </section>
+
+  <!-- 8. 直近の主要AIエージェントたち（ざっくり紹介） -->
+  <section id="major-agents">
+    <h2>8. 直近の主要AIエージェントたち（ざっくり紹介）</h2>
+    <p class="small">
+      ※ここでは「エージェントとしての性格」が分かるように、ごく大ざっぱに整理しています。  
+      詳細仕様や最新状況は必ず公式情報を確認してください。
+    </p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title"><span class="card-badge">AGENT 1</span> Claude Code / Cowork（Anthropic）</div>
+        <ul>
+          <li>特徴：コードやデータ分析を、ツールを使いながら長時間サポートするエージェント</li>
+          <li>やっていることの例：
+            <ul>
+              <li>リポジトリを自分で探索し、必要なファイルだけ読み込む</li>
+              <li>会話をコンパクションしながら、長期の作業を継続</li>
+              <li>外部メモリ（メモツール）を使って状態を保持</li>
+            </ul>
+          </li>
+          <li class="small">
+            [長期タスクやエージェントの例としてClaude Codeを紹介している技術記事][https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents]  
+            [Anthropicのエージェント製品 Cowork と自律性評価の説明][https://www.anthropic.com/news/measuring-agent-autonomy]
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-badge">AGENT 2</span> OpenAI系エージェント</div>
+        <ul>
+          <li>特徴：OpenAIモデルをベースに、ツール実行・コード実行・ブラウジングなどを組み合わせたエージェント群</li>
+          <li>やっていることの例：
+            <ul>
+              <li>開発環境と統合して、自律的なコード修正・テスト</li>
+              <li>ブラウザツールを利用した調査タスク</li>
+            </ul>
+          </li>
+          <li class="small">
+            [OpenAI・Anthropic・Googleのエージェント「軍拡」を俯瞰した比較記事][https://bosio.digital/articles/agent-arms-race-openai-anthropic-google]
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-badge">AGENT 3</span> Google 系エージェント</div>
+        <ul>
+          <li>特徴：検索・Workspace・クラウドなど Google の資産と強く結びついたエージェント</li>
+          <li>やっていることの例：
+            <ul>
+              <li>メール・ドキュメント・スプレッドシートを横断してタスク実行</li>
+              <li>クラウド上のデータ分析を半自動で回す</li>
+            </ul>
+          </li>
+          <li class="small">
+            [Google が整理した 2026 年の AI エージェントトレンドとユースケース][https://actgsys.com/en/blog/google-ai-agent-trends-2026]
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-badge">AGENT 4</span> NVIDIA Agent Toolkit ベースのエージェント</div>
+        <ul>
+          <li>特徴：GPU・企業内データ・外部ツールを組み合わせた「産業向けエージェント」を作るための土台</li>
+          <li>やっていることの例：
+            <ul>
+              <li>社内ナレッジや業務データを踏まえた作業自動化</li>
+              <li>複数エージェントを連携させたワークフローの実行</li>
+            </ul>
+          </li>
+          <li class="small">
+            [NVIDIA が発表した AI Agent と Agent Toolkit に関するニュース][http://nvidianews.nvidia.com/news/ai-agents]
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="card-badge">AGENT 5</span> 企業内カスタムエージェント（多数）</div>
+        <ul>
+          <li>特徴：各企業が、自社データ＋ツールを前提に作る「社内専用エージェント」</li>
+          <li>代表的な使い方：
+            <ul>
+              <li>カスタマーサポートの自動化</li>
+              <li>リサーチ・資料作成・レポート生成</li>
+              <li>セキュリティ運用やインシデント対応の半自動化</li>
+            </ul>
+          </li>
+          <li class="small">
+            [エンタープライズでのエージェント活用と自律性の動向をまとめたレポート][https://www.prosus.com/news-insights/2026/state-of-ai-agents-2026-autonomy-is-here]  
+            [セキュリティ分野での自律エージェント普及予測][https://www.paloaltonetworks.com/blog/2025/11/2026-predictions-for-autonomous-ai/]
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p>
+      こうしたエージェントたちは、どれも<strong>「チャットにうまい文章を投げる」よりも、
+      「どんなコンテキストとツールを用意するか」</strong>が鍵になっています。  
+      あなたのプロジェクトでも、<span class="highlight">プロンプト1本勝負 → コンテキスト設計＋エージェント設計</span>
+      という視点で設計してみると、記事の内容がそのまま活きてきます。
+    </p>
+  </section>
 </main>
 
 </body>
